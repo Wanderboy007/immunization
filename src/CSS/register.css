@@ -1,0 +1,46 @@
+.Register_cont{
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    justify-content: center;
+    height: 100vh;
+} 
+
+.Register_box{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap:1rem;
+    padding: 5%;
+    background-color: aqua; 
+    border-radius: 10%;
+} 
+
+.Register_input_cont{
+    display: flex;
+    gap: 5px;
+} 
+
+.Register_lable{
+    position: relative;
+    transform: translateX(3px);
+} 
+
+.Register_input{
+    padding: 8px;
+    font-size: 1rem;
+    width: 200px; 
+    border-radius: 10px;
+    border: sold rgb(9, 206, 144) 2px;
+} 
+
+.Register_button{
+    background-color: blueviolet; 
+    width: 100px;
+    height: 25px;
+} 
+
+.Register_individual_cont{
+display:flex ;
+flex-direction: column;
+}

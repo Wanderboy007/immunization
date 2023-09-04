@@ -1,0 +1,38 @@
+.Login_cont{
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    justify-content: center;
+    height: 100vh;
+} 
+
+.Login_box{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap:1rem;
+    padding: 10%;
+    background-color: aqua; 
+    border-radius: 10%;
+} 
+
+.Login_input_cont{
+    display: flex;
+    flex-direction: column;
+} 
+
+.Login_lable{
+    position: relative;
+    transform: translateX(3px);
+} 
+
+.Login_input{
+    padding: 5px;
+    width: 200px;
+} 
+
+.Login_button{
+    background-color: blueviolet; 
+    width: 100px;
+    height: 25px;
+}
