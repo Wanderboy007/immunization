@@ -1,0 +1,9 @@
+.navbar_ul{
+    display: flex; 
+    list-style: none; 
+    gap:2rem;  
+} 
+
+/* .navbar_li{
+    textDecoration: none;
+} */
