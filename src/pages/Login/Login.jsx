@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../CSS/login.css";
+import "./login.css";
 
 export default function Login() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   function handlesubmit(e) {
     e.preventDefault();
-    console.log(name + " " + password);
-
     axios
-      .post("http://localhost:5000/cu", { name, password })
+      .post("http://localhost:5000/api/check", { name, password })
       .then(function (response) {
         // handle success
-        console.log(response.data[0]);
+
+        if (response.data[0][0].name) {
+          navigate("/test");
+        }
       })
       .catch(function (error) {
         // handle error
@@ -32,8 +36,9 @@ export default function Login() {
 
   useEffect(() => {
     getdata();
+
     console.log("working");
-  });
+  }, []);
 
   return (
     <>
@@ -70,7 +75,7 @@ export default function Login() {
           <button className="Login_button" type="submit">
             Sign in
           </button>
-          <Link to="/blogs">Home</Link>
+          <Link to="/register">Register</Link>
         </form>
       </div>
     </>

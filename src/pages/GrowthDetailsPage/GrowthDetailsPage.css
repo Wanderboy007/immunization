@@ -1,0 +1,58 @@
+/* GrowthDetailsPage.css */
+
+/* Page styles */
+.growth-details-page {
+    display: flex;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Input styles */
+  .growth-inputs input {
+    margin-right: 10px;
+    padding: 5px;
+    width: 100px;
+  }
+  
+  /* Immunization styles */
+  .tabs button {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .tabs button.active {
+    background-color: #4caf50;
+    color: #fff;
+  }
+
+  .vaccine-inputs{ 
+    display: flex; 
+    flex-direction: column; 
+    gap:1em;
+    margin: 1em;
+  } 
+
+  .vaccine-input{
+   display: flex; 
+   gap:1em;
+   align-items: center;
+   justify-content: flex-start;
+   margin: 5px;
+  }
+  
+  .delay-info input {
+    margin-right: 10px;
+  }
+  
+  /* Birth Side Effects styles */
+  .birth-side-effects label {
+    margin-left: 10px;
+  }
+  
