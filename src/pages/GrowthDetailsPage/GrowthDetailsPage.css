@@ -2,22 +2,34 @@
 
 /* Page styles */
 .growth-details-page {
-    display: flex;
+    display: flex; 
   }
   
   .content {
     flex: 1;
     padding: 20px;
+    margin: 2rem;
   }
   
   /* Input styles */
+  .growth-inputs{
+    display: flex;
+    margin: 2rem;
+    align-items: center;
+    gap:0.5rem;
+  }
+
   .growth-inputs input {
     margin-right: 10px;
     padding: 5px;
     width: 100px;
   }
   
-  /* Immunization styles */
+  /* Immunization styles */ 
+.immunization{
+  margin: 5rem;
+}
+
   .tabs button {
     background-color: #f2f2f2;
     border: 1px solid #ddd;
@@ -55,4 +67,26 @@
   .birth-side-effects label {
     margin-left: 10px;
   }
-  
+   
+
+  .table_table{
+    width: 80%; 
+    /* margin: 1rem;  */
+    
+   }  
+   .center{
+     display: flex;
+     align-items: center;  
+     justify-content: center;
+    
+   }
+ 
+ .table_td{
+     border: 1px solid;
+   } 
+ 
+ .table_tr{
+     border: 1px solid;
+     text-align: center;
+   } 
+ 
