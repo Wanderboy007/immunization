@@ -6,14 +6,14 @@ function Sidebar() {
   const navigate = useNavigate();
 
   function handleLogout() {
-    navigate("/dashbord");
+    navigate("/dashboard");
     // Implement your logout logic here
   }
 
   return (
     <div className="sidebar">
       <div className="sidebar-heading-cont">
-        <img src="#" alt="mother pic" />
+        {/* <img src="#" alt="mother pic" /> */}
         <div className="sidebar-heading">Mother Name</div>
       </div>
       <div className="sidebar-buttons">

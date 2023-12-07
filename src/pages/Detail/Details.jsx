@@ -10,7 +10,6 @@ function DetailsPage() {
     { name: "Child 1", age: 5, dateOfRegistration: "2023-01-15" },
     { name: "Child 2", age: 6, dateOfRegistration: "2022-11-20" },
     { name: "Child 3", age: 4, dateOfRegistration: "2023-03-05" },
-    // Add more rows as needed
   ];
 
   return (

@@ -5,7 +5,6 @@
 
 
 .content {
-    margin-left: 220px; /* Adjust based on your sidebar width */
     padding: 20px;
   }
   
@@ -38,7 +37,8 @@
   .summary-button {
     background-color: #4caf50;
     color: #fff;
-    border: none;
+    border: none; 
+    border-radius: 2%;
     padding: 5px 10px;
     cursor: pointer;
     margin-right: 5px;

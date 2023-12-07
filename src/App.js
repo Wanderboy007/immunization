@@ -12,14 +12,15 @@ import MotherDetail from "./pages/motherDetails/Motherdetail";
 import SummaryPage from "./pages/summery/SummaryPage.js";
 import Test from "./pages/test file/Herotest";
 import Test2 from "./pages/test file/Test2";
+import Home from "./pages/Home/Home.jsx";
 
 
 function App() {
   return (<>
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Home />} />
       <Route path="login" element={<Login />} />
-      <Route path="dashbord" element={<Dashboard />} />
+      <Route path="dashboard" element={<Dashboard />} />
       <Route path="register" element={<Register />} />
       <Route path="analytic" element={<Analytic />} />
       <Route path="details" element={<DetailsPage />} />

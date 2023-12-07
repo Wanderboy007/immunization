@@ -72,91 +72,90 @@ function GrowthDetailsPage() {
   // };
 
   return (
-    <div className="growth-details-page">
-      <Sidebar />
+    <>
+      <div className="growth-details-page">
+        <Sidebar />
 
-      <div className="content">
-        <h1>Growth Details</h1>
+        <div className="content">
+          <h1>Growth Details</h1>
 
-        {/* Height, Weight, and HUAC inputs */}
-        <div className="growth-inputs">
-          <input
-            type="text"
-            placeholder="Height"
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Weight"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="HUAC"
-            value={huac}
-            onChange={(e) => setHUAC(e.target.value)}
-          />
-        </div>
-        {/* Immunization section */}
-        <h1>Immunization section</h1>
-        <div className="immunization">
-          {/* Navigation tabs */}
-          <div className="tabs">
-            <button
-              onClick={() => handleTabChange("birth")}
-              className={activeTab === "birth" ? "active" : ""}
-            >
-              Birth
-            </button>
-            <button
-              onClick={() => handleTabChange("1 and half month")}
-              className={activeTab === "1 and half month" ? "active" : ""}
-            >
-              1 and half month
-            </button>
-            <button
-              onClick={() => handleTabChange("2 and half month")}
-              className={activeTab === "2 and half month" ? "active" : ""}
-            >
-              2 and half month
-            </button>
-            <button
-              onClick={() => handleTabChange("3 and half month")}
-              className={activeTab === "3 and half month" ? "active" : ""}
-            >
-              3 and half month
-            </button>
-            <button
-              onClick={() => handleTabChange("9 months")}
-              className={activeTab === "9 months" ? "active" : ""}
-            >
-              9 months
-            </button>
-            <button
-              onClick={() => handleTabChange("16 - 24 months")}
-              className={activeTab === "16 - 24 months" ? "active" : ""}
-            >
-              16 - 24 months
-            </button>
-            <button
-              onClick={() => handleTabChange("Vitamin A")}
-              className={activeTab === "Vitamin A" ? "active" : ""}
-            >
-              Vitamin A
-            </button>
-            <button
-              onClick={() => handleTabChange("5-6 Year")}
-              className={activeTab === "5-6 Year" ? "active" : ""}
-            >
-              5-6 years
-            </button>
-            {/* Add more tabs as needed */}
+          {/* Height, Weight, and HUAC inputs */}
+          <div className="growth-inputs">
+            <input
+              type="text"
+              placeholder="Height"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Weight"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="HUAC"
+              value={huac}
+              onChange={(e) => setHUAC(e.target.value)}
+            />
           </div>
+          {/* Immunization section */}
+          <h1>Immunization section</h1>
+          <div className="immunization">
+            {/* Navigation tabs */}
+            <div className="tabs">
+              <button
+                onClick={() => handleTabChange("birth")}
+                className={activeTab === "birth" ? "active" : ""}
+              >
+                Birth
+              </button>
+              <button
+                onClick={() => handleTabChange("1 and half month")}
+                className={activeTab === "1 and half month" ? "active" : ""}
+              >
+                1 and half month
+              </button>
+              <button
+                onClick={() => handleTabChange("2 and half month")}
+                className={activeTab === "2 and half month" ? "active" : ""}
+              >
+                2 and half month
+              </button>
+              <button
+                onClick={() => handleTabChange("3 and half month")}
+                className={activeTab === "3 and half month" ? "active" : ""}
+              >
+                3 and half month
+              </button>
+              <button
+                onClick={() => handleTabChange("9 months")}
+                className={activeTab === "9 months" ? "active" : ""}
+              >
+                9 months
+              </button>
+              <button
+                onClick={() => handleTabChange("16 - 24 months")}
+                className={activeTab === "16 - 24 months" ? "active" : ""}
+              >
+                16 - 24 months
+              </button>
+              <button
+                onClick={() => handleTabChange("Vitamin A")}
+                className={activeTab === "Vitamin A" ? "active" : ""}
+              >
+                Vitamin A
+              </button>
+              <button
+                onClick={() => handleTabChange("5-6 Year")}
+                className={activeTab === "5-6 Year" ? "active" : ""}
+              >
+                5-6 years
+              </button>
+              {/* Add more tabs as needed */}
+            </div>
 
-          {/* Vaccine inputs */}
-          <div className="vaccine-inputs">
             {vaccineInputs.map((input, index) => (
               <div className="vaccine-input">
                 <div>
@@ -205,7 +204,8 @@ function GrowthDetailsPage() {
           next
         </button>
       </div>
-    </div>
+      ;
+    </>
   );
 }
 
