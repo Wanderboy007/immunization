@@ -2,7 +2,7 @@ import React from "react";
 import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar(props) {
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -14,14 +14,15 @@ function Sidebar() {
     <div className="sidebar">
       <div className="sidebar-heading-cont">
         {/* <img src="#" alt="mother pic" /> */}
-        <div className="sidebar-heading">Mother Name</div>
+        <div className="sidebar-heading">
+          Mothername:-
+          <br />
+          {props.MotherName ? props.MotherName : "Mother Name"}
+        </div>
       </div>
       <div className="sidebar-buttons">
         <button className="sidebar-button" onClick={handleLogout}>
           Home
-        </button>
-        <button className="sidebar-button" onClick={() => navigate("/details")}>
-          Add Child
         </button>
         <button
           className="sidebar-button "

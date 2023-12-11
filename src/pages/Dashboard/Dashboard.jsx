@@ -29,13 +29,18 @@ const Dashboard = () => {
     // console.log(mothersDetails);
     setDisplayData(mothersDetails.data);
   }
+  async function handleAddClick(e) {
+    e.preventDefault();
+    navigate(`/Motherdetail/${searchMother}`);
+  }
 
   // useEffect(() => {}, []);
   return (
     <>
       <form action="" className="form">
         <input
-          type="text"
+          type="number"
+          className="hide-arrows"
           value={searchMother}
           onChange={(e) => {
             setSearchMother(e.target.value);
@@ -43,7 +48,7 @@ const Dashboard = () => {
           placeholder="search"
         />
         <button onClick={getmotherdata}>Search</button>
-        <button>Add</button>
+        <button onClick={handleAddClick}>Add</button>
       </form>
       <div className="center">
         <table className="table_table">
@@ -65,7 +70,7 @@ const Dashboard = () => {
                   <td className="table_td">
                     <button
                       className="edit-button"
-                      onClick={() => navigate("/details")}
+                      onClick={() => navigate(`/details/${data.Adhar}`)}
                     >
                       Edit
                     </button>

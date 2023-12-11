@@ -24,4 +24,8 @@
     gap:2rem; 
     margin: 50px;
 
+  } 
+  .hide-arrows::-webkit-inner-spin-button,::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
   }

@@ -11,8 +11,9 @@ import GrowthDetailsPage from "./pages/GrowthDetailsPage/GrowthDetailsPage";
 import MotherDetail from "./pages/motherDetails/Motherdetail";
 import SummaryPage from "./pages/summery/SummaryPage.js";
 import Test from "./pages/test file/Herotest";
-import Test2 from "./pages/test file/Test2";
+// import Test2 from "./pages/test file/Test2";
 import Home from "./pages/Home/Home.jsx";
+import Addchild from "./pages/AddChild/Addchild.jsx";
 
 
 function App() {
@@ -23,12 +24,13 @@ function App() {
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="register" element={<Register />} />
       <Route path="analytic" element={<Analytic />} />
-      <Route path="details" element={<DetailsPage />} />
-      <Route path="Motherdetail" element={<MotherDetail />} />
+      <Route path="addchild/:adhar" element={<Addchild />} />
+      <Route path="details/:adhar" element={<DetailsPage />} />
+      <Route path="Motherdetail/:id?" element={<MotherDetail />} />
       <Route path="summary" element={<SummaryPage />} />
       <Route path="gdp" element={<GrowthDetailsPage />} />
       <Route path="test" element={<Test />} />
-      <Route path="test2" element={<Test2 />} />
+      {/* <Route path="test2" element={<Test2 />} /> */}
     </Routes >
   </>)
 }

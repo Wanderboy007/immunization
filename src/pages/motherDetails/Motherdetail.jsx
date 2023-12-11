@@ -1,42 +1,66 @@
 // MotherDetail.js
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./motherDetail.css"; // Import your CSS file for styling
 
 function MotherDetail() {
-  // States for form inputs
-  const [motherName, setMotherName] = useState("");
-  const [contactNo, setContactNo] = useState("");
-  const [age, setAge] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [district, setDistrict] = useState("");
-  const [taluka, setTaluka] = useState("");
-  const [aadhaarNumber, setAadhaarNumber] = useState("");
-  const [lastMenstrualPeriod, setLastMenstrualPeriod] = useState("");
-  const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("");
-  const [numPregnancies, setNumPregnancies] = useState("");
-  const [lastDeliveryLocation, setLastDeliveryLocation] = useState("");
-
   const navigate = useNavigate();
+  const param = useParams();
+  const { id } = param;
 
-  const handleNext = () => {
-    navigate("/gdp");
-    // Handle the form submission or navigation to the next step
-    // You can access all the input values here
-  };
+  const [sendData, setSendData] = useState({
+    motherName: "",
+    contactNumber: "",
+    MotherAge: "",
+    Address: { country: "", state: "", district: "", taluka: "" },
+    aadhaarNumber: id,
+    lastMenstrualPeriod: "",
+    expectedDeliveryDate: "",
+    NumberOfPregnancies: 1,
+  });
+
+  useEffect(() => {
+    setSendData({ ...sendData, aadhaarNumber: id });
+  }, [id, sendData]);
+
+  async function handleRegister() {
+    console.log(sendData);
+    try {
+      await axios.post(
+        `http://localhost:5000/api/registerMotherdetails`,
+        sendData
+      );
+      navigate("/details");
+    } catch (error) {
+      toast.error(error.response.data.message);
+      // console.log(error.response.data.message);
+    }
+  }
+
+  // const handleNext = () => {
+  //   navigate("/gdp");
+  //   // Handle the form submission or navigation to the next step
+  //   // You can access all the input values here
+  // };
 
   return (
     <div className="mother-detail-page">
       <h1>Mother Detail</h1>
       <form>
         <div className="form-group">
-          <label>Mother’s Name</label>
+          <label>Mother Name</label>
           <input
             type="text"
-            value={motherName}
-            onChange={(e) => setMotherName(e.target.value)}
+            value={sendData.motherName}
+            onChange={(e) =>
+              setSendData({ ...sendData, motherName: e.target.value })
+            }
           />
         </div>
 
@@ -44,8 +68,10 @@ function MotherDetail() {
           <label>Contact No</label>
           <input
             type="tel"
-            value={contactNo}
-            onChange={(e) => setContactNo(e.target.value)}
+            value={sendData.contactNumber}
+            onChange={(e) =>
+              setSendData({ ...sendData, contactNumber: e.target.value })
+            }
           />
         </div>
 
@@ -53,8 +79,10 @@ function MotherDetail() {
           <label>Age</label>
           <input
             type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
+            value={sendData.MotherAge}
+            onChange={(e) =>
+              setSendData({ ...sendData, MotherAge: e.target.value })
+            }
           />
         </div>
 
@@ -64,79 +92,119 @@ function MotherDetail() {
             <input
               type="text"
               placeholder="Country"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              value={sendData.Address.country}
+              onChange={(e) =>
+                setSendData({
+                  ...sendData,
+                  Address: { ...sendData.Address, country: e.target.value },
+                })
+              }
             />
             <input
               type="text"
               placeholder="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
+              value={sendData.Address.state}
+              onChange={(e) =>
+                setSendData({
+                  ...sendData,
+                  Address: { ...sendData.Address, state: e.target.value },
+                })
+              }
             />
             <input
               type="text"
               placeholder="District"
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
+              value={sendData.Address.district}
+              onChange={(e) =>
+                setSendData({
+                  ...sendData,
+                  Address: { ...sendData.Address, district: e.target.value },
+                })
+              }
             />
             <input
               type="text"
               placeholder="Taluka"
-              value={taluka}
-              onChange={(e) => setTaluka(e.target.value)}
+              value={sendData.Address.taluka}
+              onChange={(e) =>
+                setSendData({
+                  ...sendData,
+                  Address: { ...sendData.Address, taluka: e.target.value },
+                })
+              }
             />
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Aadhaar Number</label>
-          <input
-            type="text"
-            value={aadhaarNumber}
-            onChange={(e) => setAadhaarNumber(e.target.value)}
-          />
+        {/* <div className="form-group"> */}
+        <label>Aadhaar Number</label>
+        <div>
+          {id ? (
+            <input
+              type="text"
+              value={sendData.aadhaarNumber}
+              onChange={(e) =>
+                setSendData({ ...sendData, aadhaarNumber: e.target.value })
+              }
+            />
+          ) : (
+            <input
+              type="text"
+              value={sendData.aadhaarNumber}
+              disabled
+              onChange={(e) =>
+                setSendData({
+                  ...sendData,
+                  aadhaarNumber: e.target.value,
+                })
+              }
+            />
+          )}
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Date of last menstrual period</label>
           <input
             type="date"
             value={lastMenstrualPeriod}
             onChange={(e) => setLastMenstrualPeriod(e.target.value)}
           />
-        </div>
+        </div> */}
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Expected date of delivery</label>
           <input
             type="date"
             value={expectedDeliveryDate}
             onChange={(e) => setExpectedDeliveryDate(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="form-group">
           <label>No. of pregnancies / previous live births</label>
           <input
             type="number"
-            value={numPregnancies}
-            onChange={(e) => setNumPregnancies(e.target.value)}
+            value={sendData.NumberOfPregnancies}
+            onChange={(e) =>
+              setSendData({ ...sendData, NumberOfPregnancies: e.target.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Last delivery conducted at</label>
           <input
             type="text"
             value={lastDeliveryLocation}
             onChange={(e) => setLastDeliveryLocation(e.target.value)}
-          />
-        </div>
+        />
+        </div> */}
 
-        <button type="button" onClick={handleNext} className="next-button">
+        <button type="button" onClick={handleRegister} className="next-button">
           Next
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 .sidebar {
     width: 200px;
     height: 100vh;
-    background-color: #333;
+    background-color: #EDE5A0;
     color: #fff;
     padding: 20px;
     display: flex;
@@ -14,7 +14,8 @@
   }
   
   .sidebar-heading {
-    font-size: 24px;
+    font-size: 24px; 
+    color: #000;
     margin-bottom: 20px;
   } 
 
@@ -27,7 +28,7 @@
   .sidebar-button { 
     border-radius: 20px;
     margin-bottom: 10px;
-    background-color: #444;
+    background-color: #76A9B1;
     color: #fff;
     border: none;
     padding: 10px;
@@ -40,7 +41,7 @@
   
   .logout-button {
     margin-top: auto;
-    background-color: #f44336;
+    background-color: #76A9B1;
     color: #fff;
     border: none;
     padding: 10px;
@@ -48,5 +49,5 @@
   }
   
   .logout-button:hover {
-    background-color: #d32f2f;
+    background-color: #76A9B1;
   }

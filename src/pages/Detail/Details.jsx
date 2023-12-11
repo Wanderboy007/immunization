@@ -1,29 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import "./detail.css";
+import axios from "axios";
 
 function DetailsPage() {
+  const [motherData, setMotherData] = useState({});
+  const [tableData, setTableData] = useState([{}]);
   const navigate = useNavigate();
-  // Sample data for the table
-  const tableData = [
-    { name: "Child 1", age: 5, dateOfRegistration: "2023-01-15" },
-    { name: "Child 2", age: 6, dateOfRegistration: "2022-11-20" },
-    { name: "Child 3", age: 4, dateOfRegistration: "2023-03-05" },
-  ];
+  const param = useParams();
+  const { adhar } = param;
+  console.log(adhar);
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      const a = await axios.get(
+        `http://localhost:5000/api/motherdetails?adhar=${adhar}`
+      );
+      setMotherData(a.data[0]);
+      const b = await axios.get(
+        `http://localhost:5000/api/addchild?MotherAdhar=${adhar}`
+      );
+      setTableData(b.data);
+    };
+
+    fetchdata();
+  }, [adhar]);
 
   return (
     <>
       <div className="details-page">
         {/* Render the Sidebar component */}
-        <Sidebar />
+        <Sidebar MotherName={motherData.MotherName} />
 
         {/* Main content section */}
         <div className="content">
           <h1>Details</h1>
           <section className="mother-details">
-            <h2>Mother Name</h2>
-            <p>Aadhar Card: XXXX-XXXX-XXXX</p>
+            <h2>Mother Name: {motherData.MotherName}</h2>
+            <p>Aadhar Card: {adhar}</p>
           </section>
 
           {/* Table */}
@@ -39,9 +55,10 @@ function DetailsPage() {
             <tbody>
               {tableData.map((row, index) => (
                 <tr key={index}>
-                  <td>{row.name}</td>
-                  <td>{row.age}</td>
-                  <td>{row.dateOfRegistration}</td>
+                  <td>{row.ChildName}</td>
+                  <td>{row.DateOfBirth
+                  +}</td>
+                  <td>{row.DateOfRegirestion}</td>
                   <td>
                     <button
                       className="edit-button"
@@ -60,12 +77,20 @@ function DetailsPage() {
               ))}
             </tbody>
           </table>
-          <button
-            className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
-            onClick={() => navigate("/gdp")}
-          >
-            next
-          </button>
+          <div className="flex justify-between  items-center ">
+            <button
+              className="block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
+              onClick={() => navigate(`/addchild/${adhar}`)}
+            >
+              Add Child
+            </button>
+            <button
+              className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
+              onClick={() => navigate("/gdp")}
+            >
+              next
+            </button>
+          </div>
         </div>
       </div>
     </>

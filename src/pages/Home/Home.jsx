@@ -5,12 +5,12 @@ const Home = () => {
   return (
     <>
       <div className="min-h-screen bg-blue-800">
-        <div className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center">
+        <div className="min-h-screen bg-cover  bg-center flex flex-col items-center justify-center">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-4xl text-white font-bold mb-4">
               Immunization for Kids 0-6 Years
             </h1>
-            <p className="text-lg mb-8">
+            <p className="text-lg text-white mb-8">
               Protect your child with proper immunization!
             </p>
             <div className="flex justify-center space-x-4">
