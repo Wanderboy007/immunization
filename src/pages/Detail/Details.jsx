@@ -56,8 +56,7 @@ function DetailsPage() {
               {tableData.map((row, index) => (
                 <tr key={index}>
                   <td>{row.ChildName}</td>
-                  <td>{row.DateOfBirth
-                  +}</td>
+                  <td>{row.DateOfBirth}</td>
                   <td>{row.DateOfRegirestion}</td>
                   <td>
                     <button

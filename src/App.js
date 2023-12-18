@@ -11,9 +11,9 @@ import GrowthDetailsPage from "./pages/GrowthDetailsPage/GrowthDetailsPage";
 import MotherDetail from "./pages/motherDetails/Motherdetail";
 import SummaryPage from "./pages/summery/SummaryPage.js";
 import Test from "./pages/test file/Herotest";
-// import Test2 from "./pages/test file/Test2";
 import Home from "./pages/Home/Home.jsx";
 import Addchild from "./pages/AddChild/Addchild.jsx";
+import PersonalDetail from "./pages/PersonalDetail/PersonalDetail.jsx";
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
       <Route path="Motherdetail/:id?" element={<MotherDetail />} />
       <Route path="summary" element={<SummaryPage />} />
       <Route path="gdp" element={<GrowthDetailsPage />} />
+      <Route path="personal" element={<PersonalDetail />} />
       <Route path="test" element={<Test />} />
       {/* <Route path="test2" element={<Test2 />} /> */}
     </Routes >
