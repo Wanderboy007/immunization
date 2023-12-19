@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
 import "./GrowthDetailsPage.css"; // Import your CSS file for styling
+import TabComponent from "../test file/Tabs";
 import { useNavigate } from "react-router-dom";
 
 function GrowthDetailsPage() {
@@ -54,6 +55,8 @@ function GrowthDetailsPage() {
           <hr></hr>
           {/* Immunization section */}
           <h1>Immunization section</h1>
+          <TabComponent />
+
           <div className="immunization">
             <div className="center">
               <table className="table_table">

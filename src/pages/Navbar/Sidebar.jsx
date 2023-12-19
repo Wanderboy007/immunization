@@ -1,23 +1,28 @@
 import React from "react";
 import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  SetInitialState,
+  Clear,
+} from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
 
-function Sidebar(props) {
+function Sidebar() {
+  const MotherData = useSelector((state) => state.MotherData);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   function handleLogout() {
+    dispatch(Clear());
     navigate("/dashboard");
-    // Implement your logout logic here
   }
 
   return (
     <div className="sidebar">
       <div className="sidebar-heading-cont">
-        {/* <img src="#" alt="mother pic" /> */}
         <div className="sidebar-heading">
           Mothername:-
           <br />
-          {props.MotherName ? props.MotherName : "Mother Name"}
+          {MotherData.motherName ? MotherData.motherName : "Mother Name"}
         </div>
       </div>
       <div className="sidebar-buttons">

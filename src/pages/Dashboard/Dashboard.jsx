@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./dashbord.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SetInitialState } from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
 import axios from "axios";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchMother, setSearchMother] = useState("");
   const [displayData, setDisplayData] = useState([
     {
@@ -26,7 +29,7 @@ const Dashboard = () => {
     const mothersDetails = await axios.get(
       `http://localhost:5000/api/motherdetails?adhar=${searchMother}`
     );
-    // console.log(mothersDetails);
+
     setDisplayData(mothersDetails.data);
   }
   async function handleAddClick(e) {
@@ -34,7 +37,6 @@ const Dashboard = () => {
     navigate(`/Motherdetail/${searchMother}`);
   }
 
-  // useEffect(() => {}, []);
   return (
     <>
       <form action="" className="form">
@@ -70,7 +72,15 @@ const Dashboard = () => {
                   <td className="table_td">
                     <button
                       className="edit-button"
-                      onClick={() => navigate(`/details/${data.Adhar}`)}
+                      onClick={() => {
+                        dispatch(
+                          SetInitialState({
+                            motherName: data.MotherName,
+                            motherAdhar: data.Adhar,
+                          })
+                        );
+                        navigate(`/details/${data.Adhar}`);
+                      }}
                     >
                       Edit
                     </button>

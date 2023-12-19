@@ -1,42 +1,29 @@
-// Inside a component
-
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
-  loginSuccess,
-  logout,
-  selectIsLoggedIn,
-} from "../../reduxxx/featurs/counter/loginslice";
-import { useNavigate } from "react-router-dom";
+  SetInitialState,
+  Clear,
+} from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
 
-function Test() {
+const Herotest = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const navigator = useNavigate();
-
-  const handleLogin = () => {
-    // Simulate a successful login
-    // const user = { username: "exampleUser" };
-    dispatch(loginSuccess());
-    navigator("/test2");
-  };
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-
+  const count = useSelector((state) => state.MotherData);
+  const [motherName, SetMotherName] = useState({
+    motherName: "sneha",
+    motherAdhar: "5645645645",
+  });
+  console.log(count);
   return (
     <div>
-      {isLoggedIn ? (
-        <div>
-          <p>Welcome,!</p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        <button onClick={handleLogin}>Login</button>
-      )}
+      <div>
+        <p>count={count.motherName}</p>
+        <button onClick={() => dispatch(SetInitialState(motherName))}>
+          click me
+        </button>
+        <button onClick={() => dispatch(Clear())}>Clear</button>
+      </div>
     </div>
   );
-}
+};
 
-export default Test;
+export default Herotest;

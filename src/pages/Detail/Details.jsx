@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
 import { useNavigate, useParams } from "react-router-dom";
-
 import "./detail.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { SetInitialState } from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
 
 function DetailsPage() {
   const [motherData, setMotherData] = useState({});
@@ -11,7 +12,7 @@ function DetailsPage() {
   const navigate = useNavigate();
   const param = useParams();
   const { adhar } = param;
-  console.log(adhar);
+  // console.log(motherData);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -19,12 +20,12 @@ function DetailsPage() {
         `http://localhost:5000/api/motherdetails?adhar=${adhar}`
       );
       setMotherData(a.data[0]);
+
       const b = await axios.get(
         `http://localhost:5000/api/addchild?MotherAdhar=${adhar}`
       );
       setTableData(b.data);
     };
-
     fetchdata();
   }, [adhar]);
 
@@ -32,7 +33,7 @@ function DetailsPage() {
     <>
       <div className="details-page">
         {/* Render the Sidebar component */}
-        <Sidebar MotherName={motherData.MotherName} />
+        <Sidebar />
 
         {/* Main content section */}
         <div className="content">
@@ -79,7 +80,7 @@ function DetailsPage() {
           <div className="flex justify-between  items-center ">
             <button
               className="block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
-              onClick={() => navigate(`/addchild/${adhar}`)}
+              onClick={() => navigate(`/personal`)}
             >
               Add Child
             </button>

@@ -2,8 +2,10 @@ import React from "react";
 import Sidebar from "../Navbar/Sidebar";
 import { useFormik } from "formik";
 import "./PersonalDetail.css";
+import { useNavigate } from "react-router-dom";
 
 const PersonalDetail = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -18,8 +20,11 @@ const PersonalDetail = () => {
       HomeDelivery: false,
       CSection: false,
     },
+    onSubmit: (values) => {
+      navigate("/gdp");
+    },
   });
-  console.log("fromik", formik.values);
+  // console.log("fromik", formik.values);
   return (
     <>
       <div className="details-page">
@@ -28,7 +33,7 @@ const PersonalDetail = () => {
         <div className="content">
           <h1>Personal Details</h1>
           <section>
-            <form>
+            <form onSubmit={formik.handleSubmit}>
               <div className="input-cont">
                 <label htmlFor="name">Name</label>
                 <input
@@ -136,7 +141,7 @@ const PersonalDetail = () => {
                   value={formik.values.CSection}
                 />
               </div>
-              <button>submit</button>
+              <button type="submit">Next</button>
             </form>
           </section>
         </div>
