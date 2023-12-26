@@ -18,8 +18,8 @@ function SummaryPage() {
 
   // Sample data for child vaccination summary
   const vaccinationInfo = {
-    height: "90 cm",
-    weight: "12 kg",
+    height: "90cm",
+    weight: "12kg",
     HUAC: "1234567890",
     immunizations: [
       { vaccine: "Vaccine 1", date: "January 15, 2023" },
@@ -39,15 +39,16 @@ function SummaryPage() {
     <div className="flex">
       <Sidebar />
       <div className="summary-page">
-        <h1>Summary</h1>
+        <h1>SUMMARY</h1>
 
         {/* Child Information section */}
         <section className="child-information">
-          <h2>Child Information</h2>
+          <h2>CHILD INFO</h2>
           <div className="info-item">
             <span>Name:</span> {childInfo.name}
           </div>
           <div className="info-item">
+
             <span>Age:</span> {childInfo.age}
           </div>
           <div className="info-item">
@@ -61,26 +62,21 @@ function SummaryPage() {
           </div>
         </section>
 
+<div className="block-summary">
         {/* Vaccination Summary section */}
         <section className="vaccination-summary">
-          <h2>Vaccination Summary</h2>
           <div className="vaccine-info">
-            <div>
               <span>Height:</span> {vaccinationInfo.height}
-            </div>
-            <div>
               <span>Weight:</span> {vaccinationInfo.weight}
-            </div>
-            <div>
               <span>HAUC:</span> {vaccinationInfo.HUAC}
-            </div>
           </div>
           <div className="immunizations">
-            <h3>Immunizations</h3>
+            <h2>IMMUNIZATIONS</h2>
             <ul>
               {vaccinationInfo.immunizations.map((immunization, index) => (
+               
                 <li key={index}>
-                  {immunization.vaccine} - Given on {immunization.date}
+                  <b>{immunization.vaccine} -</b> <span>Given on {immunization.date}</span>
                 </li>
               ))}
             </ul>
@@ -89,7 +85,7 @@ function SummaryPage() {
 
         {/* Development Milestones section */}
         <section className="development-milestones">
-          <h2>Development Milestones</h2>
+          <h2>DEVELOPMENT MILESTONES</h2>
           <div
             className={`milestone-item ${
               milestones.checked ? "checked" : "crossed"
@@ -99,11 +95,10 @@ function SummaryPage() {
           </div>
         </section>
         <button
-          className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
-          onClick={() => navigate("/details")}
-        >
-          next
-        </button>
+          className="next-button"
+          onClick={() => navigate("/details")} >
+         NEXT
+        </button></div>
       </div>
     </div>
   );
