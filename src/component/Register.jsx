@@ -1,47 +1,22 @@
 import React from "react";
-import "./register.css";
+import "../CSS/register.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
   const [middlename, setMiddlename] = useState("");
   const [lastname, setLastname] = useState("");
-
+  const [uid, setUid] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cnf_password, setCnf_password] = useState("");
-  const navigate = useNavigate();
-
   function handlesubmit(e) {
     e.preventDefault();
-    // console.log(name + middlename + lastname + uid + phone + email + password);
-
-    axios
-      .post("http://localhost:5000/api/reguser", {
-        name,
-        middlename,
-        lastname,
-        phone,
-        email,
-        password,
-      })
-      .then(function (response) {
-        // handle success
-
-        if (response.status === 200) {
-          console.log(response);
-          navigate("/login");
-        }
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
+    console.log(name);
   }
-
   return (
     <>
       <div className="Register_cont">
@@ -61,8 +36,8 @@ function Register() {
               />
             </div>
             <div className="Register_individual_cont">
-              <label className="Register_lable" htmlFor="middlename">
-                Middle name
+              <label className="Register_lable" htmlFor="Phone">
+                Phone
               </label>
               <input
                 type="text"
@@ -89,11 +64,23 @@ function Register() {
           {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
           <div className="Register_input_cont">
             <div className="Register_individual_cont">
+              <label className="Register_lable" htmlFor="uid">
+                uid
+              </label>
+              <input
+                type="text"
+                uid="uid"
+                value={uid}
+                onChange={(e) => setUid(e.target.value)}
+                className="Register_input"
+              />
+            </div>
+            <div className="Register_individual_cont">
               <label className="Register_lable" htmlFor="phone">
                 Phone
               </label>
               <input
-                type="phone"
+                type="text"
                 name="phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -109,7 +96,7 @@ function Register() {
                 Email
               </label>
               <input
-                type="email"
+                type="text"
                 email="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -124,7 +111,7 @@ function Register() {
                 password
               </label>
               <input
-                type="password"
+                type="text"
                 password="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -136,7 +123,7 @@ function Register() {
                 confirm_password
               </label>
               <input
-                type="password"
+                type="text"
                 name="cnf_password"
                 value={cnf_password}
                 onChange={(e) => setCnf_password(e.target.value)}
@@ -152,6 +139,7 @@ function Register() {
           <button className="Register_button" type="submit">
             Register
           </button>
+          <Link to="/blogs">Home</Link>
         </form>
       </div>
     </>
