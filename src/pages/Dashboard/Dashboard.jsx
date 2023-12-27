@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../Navbar/Navbar";
 import "./dashbord.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -39,6 +40,7 @@ const Dashboard = () => {
 
   return (
     <>
+      <Navbar />
       <form action="" className="form">
         <input
           type="number"
