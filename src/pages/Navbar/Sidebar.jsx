@@ -13,7 +13,9 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-heading-cont">
+        <div className="mother-img">
         <img src="#" alt="mother pic" />
+        </div>
         <div className="sidebar-heading">Mother Name</div>
       </div>
       <div className="sidebar-buttons">
