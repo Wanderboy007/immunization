@@ -2,10 +2,7 @@ import React from "react";
 import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  SetInitialState,
-  Clear,
-} from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
+import { Clear } from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
 
 function Sidebar() {
   const MotherData = useSelector((state) => state.MotherData);

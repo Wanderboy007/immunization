@@ -3,16 +3,14 @@ import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
 import "./GrowthDetailsPage.css"; // Import your CSS file for styling
 import TabComponent from "../test file/Tabs";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function GrowthDetailsPage() {
-  //navagate
-  const navagate = useNavigate();
+  const navigate = useNavigate();
   // States for height, weight, and HUAC inputs
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [huac, setHUAC] = useState("");
-  const date = new Date();
-  let currentDate = date.toJSON();
 
   const [checkboxOptions] = useState([
     "Face recognition (mother)",
@@ -35,6 +33,9 @@ function GrowthDetailsPage() {
   };
 
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  const getTodayDate = () => {
+    console.log("hi");
+  };
   const [vaccineData, setVaccineData] = useState([
     {
       vaccine: "opv1",
@@ -57,12 +58,6 @@ function GrowthDetailsPage() {
     // Add more initial data objects as needed
   ]);
 
-  const getTodayDate = () => {
-    return 11 - 12 - 2022;
-    // Implement your logic to get today's date here
-    // For example: return new Date().toISOString().split('T')[0];
-  };
-
   const handleCheckboxChangeTable = (index) => {
     const updatedVaccineData = [...vaccineData];
     updatedVaccineData[index].checked = !updatedVaccineData[index].checked;
@@ -84,8 +79,10 @@ function GrowthDetailsPage() {
     vaccineData,
   };
 
-  function handleSubmit() {
+  async function handleSubmit() {
     console.log(sendObject);
+    navigate("/details");
+    await axios.post(``, sendObject);
   }
 
   return (

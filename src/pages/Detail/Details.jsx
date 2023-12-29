@@ -3,8 +3,8 @@ import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
 import { useNavigate, useParams } from "react-router-dom";
 import "./detail.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { SetInitialState } from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
+// import { useDispatch } from "react-redux";
+// import { SetInitialState } from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
 
 function DetailsPage() {
   const [motherData, setMotherData] = useState({});
@@ -12,7 +12,6 @@ function DetailsPage() {
   const navigate = useNavigate();
   const param = useParams();
   const { adhar } = param;
-  // console.log(motherData);
 
   useEffect(() => {
     const fetchdata = async () => {
