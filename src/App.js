@@ -9,7 +9,7 @@ import Analytic from "./pages/Analytics/Analytic";
 import DetailsPage from "./pages/Detail/Details";
 import GrowthDetailsPage from "./pages/GrowthDetailsPage/GrowthDetailsPage";
 import MotherDetail from "./pages/motherDetails/Motherdetail";
-import SummaryPage from "./pages/summary/SummaryPage.js";
+import SummaryPage from "./pages/summery/SummaryPage.js";
 // import Test from "./pages/test file/Herotest";
 import Home from "./pages/Home/Home.jsx";
 import Addchild from "./pages/AddChild/Addchild.jsx";
