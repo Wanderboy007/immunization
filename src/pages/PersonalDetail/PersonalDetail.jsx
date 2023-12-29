@@ -33,115 +33,145 @@ const PersonalDetail = () => {
         <div className="content">
           <h1>Personal Details</h1>
           <section>
-            <form onSubmit={formik.handleSubmit}>
+            <form
+              className="flex flex-col items-baseline gap-10"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="input-cont">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                />
+                <div className="flex flex-col">
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                  />
+                </div>
 
-                <label htmlFor="Middlename">Middle Name</label>
-                <input
-                  type="text"
-                  id="Middlename"
-                  name="Middlename"
-                  onChange={formik.handleChange}
-                  value={formik.values.Middlename}
-                />
+                <div className="flex flex-col">
+                  <label htmlFor="Middlename">Middle Name</label>
+                  <input
+                    type="text"
+                    id="Middlename"
+                    name="Middlename"
+                    onChange={formik.handleChange}
+                    value={formik.values.Middlename}
+                  />
+                </div>
 
-                <label htmlFor="Lastname">Last Name</label>
-                <input
-                  type="text"
-                  id="Lastname"
-                  name="Lastname"
-                  onChange={formik.handleChange}
-                  value={formik.values.Lastname}
-                />
-              </div>
-
-              <div className="input-cont">
-                <label htmlFor="MotherAdher">MotherAdher</label>
-                <input
-                  type="text"
-                  id="MotherAdher"
-                  name="MotherAdher"
-                  onChange={formik.handleChange}
-                  value={formik.values.MotherAdher}
-                />
-
-                <label htmlFor="DateOfBirth">Date Of Birth</label>
-                <input
-                  type="date"
-                  id="DateOfBirth"
-                  name="DateOfBirth"
-                  onChange={formik.handleChange}
-                  value={formik.values.DateOfBirth}
-                />
-
-                <label htmlFor="BirthWeight">BirthWeight</label>
-                <input
-                  type="number"
-                  id="BirthWeight"
-                  name="BirthWeight"
-                  placeholder="ex-2kg"
-                  onChange={formik.handleChange}
-                  value={formik.values.BirthWeight}
-                />
-              </div>
-
-              <div className="flex m-2 p-2 gap-5 items-center">
-                <label htmlFor="PlaceOfBirth">PlaceOfBirth</label>
-                <input
-                  type="text"
-                  id="PlaceOfBirth"
-                  name="PlaceOfBirth"
-                  onChange={formik.handleChange}
-                  value={formik.values.PlaceOfBirth}
-                />
-
-                <label htmlFor="ClinicalDelivery">Clinical Delivery</label>
-                <input
-                  type="checkbox"
-                  id="ClinicalDelivery"
-                  name="ClinicalDelivery"
-                  onChange={formik.handleChange}
-                  value={formik.values.ClinicalDelivery}
-                />
+                <div className="flex flex-col">
+                  <label htmlFor="Lastname">Last Name</label>
+                  <input
+                    type="text"
+                    id="Lastname"
+                    name="Lastname"
+                    onChange={formik.handleChange}
+                    value={formik.values.Lastname}
+                  />
+                </div>
               </div>
 
               <div className="input-cont">
-                <label htmlFor="PerTerm">PerTerm</label>
-                <input
-                  type="checkbox"
-                  id="PerTerm"
-                  name="PerTerm"
-                  onChange={formik.handleChange}
-                  value={formik.values.PerTerm}
-                />
+                <div>
+                  <label htmlFor="MotherAdher">MotherAdher</label>
+                  <input
+                    type="text"
+                    id="MotherAdher"
+                    name="MotherAdher"
+                    onChange={formik.handleChange}
+                    value={formik.values.MotherAdher}
+                  />
+                </div>
 
-                <label htmlFor="HomeDelivery">Home Delivery</label>
-                <input
-                  type="checkbox"
-                  id="HomeDelivery"
-                  name="HomeDelivery"
-                  onChange={formik.handleChange}
-                  value={formik.values.HomeDelivery}
-                />
+                <div>
+                  <label htmlFor="DateOfBirth">Date Of Birth</label>
+                  <input
+                    type="date"
+                    id="DateOfBirth"
+                    name="DateOfBirth"
+                    onChange={formik.handleChange}
+                    value={formik.values.DateOfBirth}
+                  />
+                </div>
 
-                <label htmlFor="CSection">C Section</label>
-                <input
-                  type="checkbox"
-                  id="CSection"
-                  name="CSection"
-                  onChange={formik.handleChange}
-                  value={formik.values.CSection}
-                />
+                <div>
+                  <label htmlFor="BirthWeight">BirthWeight</label>
+                  <input
+                    type="number"
+                    id="BirthWeight"
+                    name="BirthWeight"
+                    placeholder="ex-2kg"
+                    onChange={formik.handleChange}
+                    value={formik.values.BirthWeight}
+                  />
+                </div>
               </div>
-              <button type="submit">Next</button>
+
+              <div className="flex gap-5 items-center">
+                <div>
+                  <label htmlFor="PlaceOfBirth">PlaceOfBirth</label>
+                  <input
+                    type="text"
+                    id="PlaceOfBirth"
+                    name="PlaceOfBirth"
+                    onChange={formik.handleChange}
+                    value={formik.values.PlaceOfBirth}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="ClinicalDelivery">Clinical Delivery</label>
+                  <input
+                    type="checkbox"
+                    id="ClinicalDelivery"
+                    name="ClinicalDelivery"
+                    onChange={formik.handleChange}
+                    value={formik.values.ClinicalDelivery}
+                  />
+                </div>
+              </div>
+
+              <div className="input-cont">
+                <div>
+                  <label htmlFor="PerTerm">PerTerm</label>
+                  <input
+                    type="checkbox"
+                    id="PerTerm"
+                    name="PerTerm"
+                    onChange={formik.handleChange}
+                    value={formik.values.PerTerm}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="HomeDelivery">Home Delivery</label>
+                  <input
+                    type="checkbox"
+                    id="HomeDelivery"
+                    name="HomeDelivery"
+                    onChange={formik.handleChange}
+                    value={formik.values.HomeDelivery}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="CSection">C Section</label>
+                  <input
+                    type="checkbox"
+                    id="CSection"
+                    name="CSection"
+                    onChange={formik.handleChange}
+                    value={formik.values.CSection}
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className=" text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 w-1/2"
+              >
+                Next
+              </button>
             </form>
           </section>
         </div>

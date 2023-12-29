@@ -1,5 +1,3 @@
-// GrowthDetailsPage.js
-
 import React, { useState } from "react";
 import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
 import "./GrowthDetailsPage.css"; // Import your CSS file for styling
@@ -13,15 +11,82 @@ function GrowthDetailsPage() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [huac, setHUAC] = useState("");
-
-  // States for immunization tabs
-  const [delayed, setDelayed] = useState(false);
-  const [delayReason, setDelayReason] = useState("");
-
-  //today's date
   const date = new Date();
   let currentDate = date.toJSON();
-  const Todaydate = currentDate.slice(0, 10);
+
+  const [checkboxOptions] = useState([
+    "Face recognition (mother)",
+    "Face recognition (known person)",
+    "Holding Eye contact",
+    "Raising head while lying on the stomach",
+    "When excited, both hands and to shake feet",
+    "Keep the hand open and loose",
+  ]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+
+  const handleCheckboxChange = (option) => {
+    if (selectedCheckboxes.includes(option)) {
+      setSelectedCheckboxes((prevSelected) =>
+        prevSelected.filter((item) => item !== option)
+      );
+    } else {
+      setSelectedCheckboxes((prevSelected) => [...prevSelected, option]);
+    }
+  };
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  const [vaccineData, setVaccineData] = useState([
+    {
+      vaccine: "opv1",
+      date: "11-12-2022" || getTodayDate(),
+      checked: false,
+      delayReason: "",
+    },
+    {
+      vaccine: "opv2",
+      date: "11-12-2022" || getTodayDate(),
+      checked: false,
+      delayReason: "",
+    },
+    {
+      vaccine: "opv3",
+      date: "11-12-2022" || getTodayDate(),
+      checked: false,
+      delayReason: "",
+    },
+    // Add more initial data objects as needed
+  ]);
+
+  const getTodayDate = () => {
+    return 11 - 12 - 2022;
+    // Implement your logic to get today's date here
+    // For example: return new Date().toISOString().split('T')[0];
+  };
+
+  const handleCheckboxChangeTable = (index) => {
+    const updatedVaccineData = [...vaccineData];
+    updatedVaccineData[index].checked = !updatedVaccineData[index].checked;
+    setVaccineData(updatedVaccineData);
+  };
+
+  const handleSelectChange = (index, value) => {
+    const updatedVaccineData = [...vaccineData];
+    updatedVaccineData[index].delayReason = value;
+    setVaccineData(updatedVaccineData);
+  };
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  const sendObject = {
+    height,
+    huac,
+    weight,
+    selectedCheckboxes,
+    vaccineData,
+  };
+
+  function handleSubmit() {
+    console.log(sendObject);
+  }
 
   return (
     <>
@@ -54,70 +119,77 @@ function GrowthDetailsPage() {
           </div>
           <hr></hr>
           {/* Immunization section */}
-          <h1>Immunization section</h1>
+          <h1>Immunization Section</h1>
           <TabComponent />
 
           <div className="immunization">
             <div className="center">
               <table className="table_table">
-                <tr className="table_tr">
-                  <th className="table_td">Vaccine</th>
-                  <th className="table_td">Date</th>
-
-                  <th className="table_td">Action</th>
-                </tr>
-                <tr className="table_tr">
-                  <td className="table_td">opv1</td>
-                  <td className="table_td">{Todaydate}</td>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                </tr>
-                <tr className="table_tr">
-                  <td className="table_td">opv1</td>
-                  <td className="table_td">{Todaydate}</td>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                </tr>
-                <tr className="table_tr">
-                  <td className="table_td">opv1</td>
-                  <td className="table_td">{Todaydate}</td>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                </tr>
+                <thead>
+                  <tr className="table_tr">
+                    <th className="table_td">Vaccine</th>
+                    <th className="table_td">Date</th>
+                    <th className="table_td">Action</th>
+                    <th className="table_td">Delay</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {vaccineData.map((data, index) => (
+                    <tr className="table_tr" key={index}>
+                      <td className="table_td">{data.vaccine}</td>
+                      <td className="table_td">{data.date}</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={data.checked}
+                          onChange={() => handleCheckboxChangeTable(index)}
+                        />
+                      </td>
+                      <td className="table_td">
+                        <select
+                          value={data.delayReason}
+                          onChange={(e) =>
+                            handleSelectChange(index, e.target.value)
+                          }
+                        >
+                          <option value="">Select Delay Reason</option>
+                          <option value="Reason 1">Reason 1</option>
+                          <option value="Reason 2">Reason 2</option>
+                          {/* Add more reasons as needed */}
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
-          </div>
-
-          {/* Delay checkbox and reason */}
-          <div className="delay-info">
-            <label htmlFor="delayed">Delayed</label>
-            <input
-              type="checkbox"
-              checked={delayed}
-              onChange={(e) => setDelayed(e.target.checked)}
-            />
-            <select
-              value={delayReason}
-              onChange={(e) => setDelayReason(e.target.value)}
-            >
-              <option value="">Select Delay Reason</option>
-              <option value="Reason 1">Reason 1</option>
-              <option value="Reason 2">Reason 2</option>
-              {/* Add more reasons as needed */}
-            </select>
           </div>
           <hr></hr>
           {/* Birth Side Effects */}
           <div className="birth-side-effects">
-            <h1>Developmental milestone</h1>
-            <input type="checkbox" id="disease" />
-            <label htmlFor="disease">Disease at Birth</label>
+            <h1>Developmental Milestone</h1>
+            <div>
+              {checkboxOptions.map((option, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between mb-2 mx-[80px]
+                  "
+                >
+                  <label htmlFor={`checkbox-${index}`}>{option}</label>
+                  <input
+                    type="checkbox"
+                    id={`checkbox-${index}`}
+                    name={`checkbox-${index}`}
+                    checked={selectedCheckboxes.includes(option)}
+                    onChange={() => handleCheckboxChange(option)}
+                    className="mr-2 h-5 w-5"
+                  />
+                </div>
+              ))}
+            </div>
             <button
               className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
-              onClick={() => navagate("/")}
+              onClick={handleSubmit}
             >
               next
             </button>

@@ -84,12 +84,6 @@ function DetailsPage() {
             >
               Add Child
             </button>
-            <button
-              className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
-              onClick={() => navigate("/gdp")}
-            >
-              next
-            </button>
           </div>
         </div>
       </div>
