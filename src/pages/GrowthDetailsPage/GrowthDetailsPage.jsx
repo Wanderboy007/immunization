@@ -11,6 +11,7 @@ function GrowthDetailsPage() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [huac, setHUAC] = useState("");
+  const [Growthstatus, setGrowthstatus] = useState("Birth");
 
   const [checkboxOptions] = useState([
     "Face recognition (mother)",
@@ -75,14 +76,15 @@ function GrowthDetailsPage() {
     height,
     huac,
     weight,
+    Growthstatus,
     selectedCheckboxes,
     vaccineData,
   };
 
   async function handleSubmit() {
     console.log(sendObject);
-    navigate("/details");
-    await axios.post(``, sendObject);
+    // navigate("/details");
+    // await axios.post(``, sendObject);
   }
 
   return (

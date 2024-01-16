@@ -4,28 +4,22 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import "./motherDetail.css"; // Import your CSS file for styling
 
 function MotherDetail() {
   const navigate = useNavigate();
   const param = useParams();
-  const { id } = param;
 
   const [sendData, setSendData] = useState({
     motherName: "",
     contactNumber: "",
     MotherAge: "",
     Address: { country: "", state: "", district: "", taluka: "" },
-    aadhaarNumber: id,
+    aadhaarNumber: "",
     lastMenstrualPeriod: "",
     expectedDeliveryDate: "",
     NumberOfPregnancies: 1,
   });
-
-  useEffect(() => {
-    setSendData({ ...sendData, aadhaarNumber: id });
-  }, [id, sendData]);
 
   async function handleRegister() {
     console.log(sendData);
@@ -34,18 +28,12 @@ function MotherDetail() {
         `http://localhost:5000/api/registerMotherdetails`,
         sendData
       );
-      navigate("/details");
+      // navigate("/details");
     } catch (error) {
       toast.error(error.response.data.message);
       // console.log(error.response.data.message);
     }
   }
-
-  // const handleNext = () => {
-  //   navigate("/gdp");
-  //   // Handle the form submission or navigation to the next step
-  //   // You can access all the input values here
-  // };
 
   return (
     <div className="mother-detail-page">
@@ -137,27 +125,13 @@ function MotherDetail() {
         {/* <div className="form-group"> */}
         <label>Aadhaar Number</label>
         <div>
-          {id ? (
-            <input
-              type="text"
-              value={sendData.aadhaarNumber}
-              onChange={(e) =>
-                setSendData({ ...sendData, aadhaarNumber: e.target.value })
-              }
-            />
-          ) : (
-            <input
-              type="text"
-              value={sendData.aadhaarNumber}
-              disabled
-              onChange={(e) =>
-                setSendData({
-                  ...sendData,
-                  aadhaarNumber: e.target.value,
-                })
-              }
-            />
-          )}
+          <input
+            type="text"
+            value={sendData.aadhaarNumber}
+            onChange={(e) =>
+              setSendData({ ...sendData, aadhaarNumber: e.target.value })
+            }
+          />
         </div>
 
         {/* <div className="form-group">

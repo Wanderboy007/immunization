@@ -3,6 +3,7 @@ import Sidebar from "../Navbar/Sidebar";
 import { useFormik } from "formik";
 import "./PersonalDetail.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PersonalDetail = () => {
   const navigate = useNavigate();
@@ -21,10 +22,19 @@ const PersonalDetail = () => {
       CSection: false,
     },
     onSubmit: (values) => {
-      navigate("/gdp");
+      console.log("fromik", formik.values);
+      async function sendData() {
+        const a = await axios.post(
+          "http://localhost:5000/api/addchild",
+          formik.values
+        );
+
+        console.log(a);
+      }
+      sendData();
+      // navigate("/gdp");
     },
   });
-  // console.log("fromik", formik.values);
   return (
     <>
       <div className="details-page">

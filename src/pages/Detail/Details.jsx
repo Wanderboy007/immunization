@@ -13,25 +13,49 @@ function DetailsPage() {
   const param = useParams();
   const { adhar } = param;
 
+  console.log(tableData);
+
   useEffect(() => {
     const fetchdata = async () => {
       const a = await axios.get(
-        `http://localhost:5000/api/motherdetails?adhar=${adhar}`
+        `http://localhost:5000/api/getchild?MotherAdhar=${adhar}`
       );
-      setMotherData(a.data[0]);
-
+      console.log(a.data);
+      setTableData(a.data);
       const b = await axios.get(
-        `http://localhost:5000/api/addchild?MotherAdhar=${adhar}`
+        `http://localhost:5000/api/motherSingledetails?MotherAdhar=${adhar}`
       );
-      setTableData(b.data);
+      console.log(b);
+      setMotherData(b.data[0]);
     };
     fetchdata();
   }, [adhar]);
 
+  function calculateAgeWithDOB(birthdate) {
+    var birthdateObj = new Date(birthdate);
+    var currentDate = new Date();
+
+    var age = currentDate.getFullYear() - birthdateObj.getFullYear();
+
+    if (
+      currentDate.getMonth() < birthdateObj.getMonth() ||
+      (currentDate.getMonth() === birthdateObj.getMonth() &&
+        currentDate.getDate() < birthdateObj.getDate())
+    ) {
+      age--;
+    }
+
+    // Extract month and day from the birthdate
+    var birthMonth = birthdateObj.getMonth() + 1; // Adding 1 to convert from zero-based to one-based indexing
+    var birthDay = birthdateObj.getDate();
+
+    return `day:-${birthDay} months:-${birthMonth} year:-${age}`;
+  }
+  //get age of the child
+
   return (
     <>
       <div className="details-page">
-        {/* Render the Sidebar component */}
         <Sidebar />
 
         {/* Main content section */}
@@ -55,8 +79,10 @@ function DetailsPage() {
             <tbody>
               {tableData.map((row, index) => (
                 <tr key={index}>
-                  <td>{row.ChildName}</td>
-                  <td>{row.DateOfBirth}</td>
+                  <td>
+                    {row.name} {row.Middlename} {row.Lastname}
+                  </td>
+                  <td>{calculateAgeWithDOB(row.DateOfBirth)}</td>
                   <td>{row.DateOfRegirestion}</td>
                   <td>
                     <button

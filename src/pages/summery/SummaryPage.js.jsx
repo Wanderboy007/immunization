@@ -1,20 +1,21 @@
 // SummaryPage.js
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SummaryPage.css"; // Import your CSS file for styling
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Navbar/Sidebar";
+import axios from "axios";
 
 function SummaryPage() {
   const navigate = useNavigate();
-  // Sample data for child information
-  const childInfo = {
+
+  const [childInfo, setChildData] = useState({
     name: "Child Name",
     age: "3 years",
     dob: "January 1, 2020",
     motherName: "Mother Name",
     aadharCard: "XXXX-XXXX-XXXX",
-  };
+  });
 
   // Sample data for child vaccination summary
   const vaccinationInfo = {
@@ -35,6 +36,12 @@ function SummaryPage() {
     checked: true, // Change to false to display a crossed checkbox
   };
 
+  // useEffect(() => {
+  //   async function displayData() {
+  //     a = await axios.get("");
+  //     // setChildData(a.data)
+  //   }
+  // });
   return (
     <div className="flex">
       <Sidebar />

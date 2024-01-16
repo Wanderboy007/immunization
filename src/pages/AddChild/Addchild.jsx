@@ -1,8 +1,7 @@
-// GrowthDetailsPage.js
-
 import React, { useState } from "react";
 import Sidebar from "../Navbar/Sidebar"; // Import your Sidebar component here
 import { useParams } from "react-router-dom";
+import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 function Addchild() {
@@ -16,7 +15,8 @@ function Addchild() {
     ChildNumber: "",
   });
 
-  const HandleSubmit = () => {
+  const HandleSubmit = (e) => {
+    e.preventDefault();
     console.log(ChildData);
   };
 

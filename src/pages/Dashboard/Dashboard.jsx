@@ -28,7 +28,7 @@ const Dashboard = () => {
   async function getmotherdata(e) {
     e.preventDefault();
     const mothersDetails = await axios.get(
-      `http://localhost:5000/api/motherdetails?adhar=${searchMother}`
+      `http://localhost:5000/api/motherdetails?MotherAdhar=${searchMother}`
     );
 
     setDisplayData(mothersDetails.data);
@@ -65,9 +65,9 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {displayData.map((data) => {
+            {displayData.map((data, index) => {
               return (
-                <tr className=" text-center" key={data.MotherID}>
+                <tr className=" text-center" key={index}>
                   <td className="table_td">{data.Adhar}</td>
                   <td className="table_td">{data.MotherName}</td>
                   <td className="table_td">{data.NumberOfChild}</td>
