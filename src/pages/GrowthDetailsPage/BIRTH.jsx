@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../Navbar/Sidebar";
 import "./GrowthDetailsPage.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-function GrowthDetailsPage() {
+function BIRTH() {
   const navigate = useNavigate();
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [huac, setHUAC] = useState(0);
   const [activeTab] = useState("BIRTH");
+  const PUID = useSelector((store) => store.PractitionerUID);
+  const MotherID = useSelector((store) => store.MotherData.motherAdhar);
+  const param = useParams();
+  const { childdata } = param;
+
+  useEffect(() => {
+    const a = async () => {
+      const getData = await axios.get("");
+    };
+  });
 
   const tabItems = [
     "BIRTH",
@@ -87,21 +99,23 @@ function GrowthDetailsPage() {
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   const sendObject = {
+    ChildUID: childdata,
     height,
     huac,
     weight,
-    // Growthstatus,
+    Growthstatus: childdata,
     selectedCheckboxes,
     vaccineData,
+    PractitionerUID: PUID.PractitionerUID,
   };
 
   async function handleSubmit() {
-    console.log(sendObject);
-    // navigate("/details");
-    // const a = await axios.post(
-    //   `http://localhost:5000/api/vaccinBirth`,
-    //   sendObject
-    // );
+    // console.log(sendObject);
+    navigate(`/details/${MotherID}`);
+    const a = await axios.post(
+      `http://localhost:5000/vaccin/birth`,
+      sendObject
+    );
     // console.log(a);
   }
 
@@ -139,7 +153,9 @@ function GrowthDetailsPage() {
           {tabItems.map((tab, index) => (
             <button
               key={index}
-              onClick={() => navigate(`/${tab.replace(/\s/g, "")}`)}
+              onClick={() =>
+                navigate(`/${tab.replace(/\s/g, "")}/${childdata}`)
+              }
               className={`py-2 mx-2 px-4 border border-gray-300 focus:outline-none ${
                 activeTab === tab ? "bg-blue-500 text-white" : ""
               }`}
@@ -190,29 +206,8 @@ function GrowthDetailsPage() {
               </table>
             </div>
           </div>
-          <hr></hr>
           {/* developement milestone */}
           <div className="birth-side-effects">
-            {/* <h1>Developmental Milestone</h1> */}
-            <div>
-              {/* {checkboxOptions.map((option, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between mb-2 mx-[80px]
-                  "
-                >
-                  <label htmlFor={`checkbox-${index}`}>{option}</label>
-                  <input
-                    type="checkbox"
-                    id={`checkbox-${index}`}
-                    name={`checkbox-${index}`}
-                    checked={selectedCheckboxes.includes(option)}
-                    onChange={() => handleCheckboxChange(option)}
-                    className="mr-2 h-5 w-5"
-                  />
-                </div>
-              ))} */}
-            </div>
             <button
               className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
               onClick={handleSubmit}
@@ -227,4 +222,4 @@ function GrowthDetailsPage() {
   );
 }
 
-export default GrowthDetailsPage;
+export default BIRTH;

@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import Sidebar from "../Navbar/Sidebar";
 import "./GrowthDetailsPage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-function GrowthDetailsPage() {
+function NINEMONTHS() {
   const navigate = useNavigate();
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [huac, setHUAC] = useState(0);
-  const [activeTab] = useState("BIRTH");
+  const PUID = useSelector((store) => store.PractitionerUID);
+  const [activeTab] = useState("NINE MONTHS");
+  const param = useParams();
+  const { childdata } = param;
 
   const tabItems = [
     "BIRTH",
@@ -18,10 +22,23 @@ function GrowthDetailsPage() {
     "THREE MONTHS",
     "NINE MONTHS",
     "SIXTEEN MONTHS",
-    "Vitamin A",
+    "VITAMIN A",
     "SIX YEARS",
   ];
 
+  const [checkboxOptions, setCheckboxOptions] = useState([
+    "Keep head steady when held upright and can sit with support",
+    "Turn head towards direction of sound",
+    "Attempt to reach and grasp an object",
+    "Laugh aloud or make squealing sounds",
+    "Begin to babble “ah, ee, oo” other than when crying",
+    "Like to look at self in a mirror",
+    "Roll over in both directions",
+    "Grasp a toy by using all fingers",
+    "Turn head to visually follow familiar faces or toys",
+    "Look for toys that have been hidden in front of them",
+    "Respond to name being called",
+  ]);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
   const handleCheckboxChange = (option) => {
@@ -54,20 +71,26 @@ function GrowthDetailsPage() {
 
   const [vaccineData, setVaccineData] = useState([
     {
-      vaccine: "OPV-0",
-      date: getTodayDate(),
+      vaccine: "MR-1",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
     {
-      vaccine: "Hep B",
-      date: getTodayDate(),
+      vaccine: "JE-1",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
     {
-      vaccine: "BCG",
-      date: getTodayDate(),
+      vaccine: "Vitamin A-1",
+      date: "11-12-2022" || getTodayDate(),
+      checked: false,
+      delayReason: "",
+    },
+    {
+      vaccine: "PCV-3",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
@@ -87,12 +110,14 @@ function GrowthDetailsPage() {
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   const sendObject = {
+    ChildUID: childdata,
     height,
     huac,
     weight,
-    // Growthstatus,
+    Growthstatus: childdata,
     selectedCheckboxes,
     vaccineData,
+    PractitionerUID: PUID.PractitionerUID,
   };
 
   async function handleSubmit() {
@@ -139,7 +164,9 @@ function GrowthDetailsPage() {
           {tabItems.map((tab, index) => (
             <button
               key={index}
-              onClick={() => navigate(`/${tab.replace(/\s/g, "")}`)}
+              onClick={() =>
+                navigate(`/${tab.replace(/\s/g, "")}/${childdata}`)
+              }
               className={`py-2 mx-2 px-4 border border-gray-300 focus:outline-none ${
                 activeTab === tab ? "bg-blue-500 text-white" : ""
               }`}
@@ -195,7 +222,7 @@ function GrowthDetailsPage() {
           <div className="birth-side-effects">
             {/* <h1>Developmental Milestone</h1> */}
             <div>
-              {/* {checkboxOptions.map((option, index) => (
+              {checkboxOptions.map((option, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-between mb-2 mx-[80px]
@@ -211,7 +238,7 @@ function GrowthDetailsPage() {
                     className="mr-2 h-5 w-5"
                   />
                 </div>
-              ))} */}
+              ))}
             </div>
             <button
               className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
@@ -227,4 +254,4 @@ function GrowthDetailsPage() {
   );
 }
 
-export default GrowthDetailsPage;
+export default NINEMONTHS;

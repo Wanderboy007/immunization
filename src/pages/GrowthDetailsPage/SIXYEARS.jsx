@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import Sidebar from "../Navbar/Sidebar";
 import "./GrowthDetailsPage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-function GrowthDetailsPage() {
+function SIXYEARS() {
   const navigate = useNavigate();
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [huac, setHUAC] = useState(0);
-  const [activeTab] = useState("BIRTH");
+  const PUID = useSelector((store) => store.PractitionerUID);
+  const [activeTab] = useState("SIX YEARS");
+  const param = useParams();
+  const { childdata } = param;
 
   const tabItems = [
     "BIRTH",
@@ -18,11 +22,17 @@ function GrowthDetailsPage() {
     "THREE MONTHS",
     "NINE MONTHS",
     "SIXTEEN MONTHS",
-    "Vitamin A",
+    "VITAMIN A",
     "SIX YEARS",
   ];
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [checkboxOptions, setCheckboxOptions] = useState([
+    "Drink from a cup without spilling",
+    "Name most familiar things consistently. Identify colours, shapes, etc.",
+    "Make a sentence by joining 3 or more words",
+    "Climb up and down the stairs",
+  ]);
 
   const handleCheckboxChange = (option) => {
     if (selectedCheckboxes.includes(option)) {
@@ -54,20 +64,16 @@ function GrowthDetailsPage() {
 
   const [vaccineData, setVaccineData] = useState([
     {
-      vaccine: "OPV-0",
-      date: getTodayDate(),
+      vaccine: "DPT Booster-2",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
+  ]);
+  const [vaccineData56Years, setVaccineData56Years] = useState([
     {
-      vaccine: "Hep B",
-      date: getTodayDate(),
-      checked: false,
-      delayReason: "",
-    },
-    {
-      vaccine: "BCG",
-      date: getTodayDate(),
+      vaccine: "DPT Booster-2",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
@@ -87,12 +93,14 @@ function GrowthDetailsPage() {
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   const sendObject = {
+    ChildUID: childdata,
     height,
     huac,
     weight,
-    // Growthstatus,
+    Growthstatus: childdata,
     selectedCheckboxes,
     vaccineData,
+    PractitionerUID: PUID.PractitionerUID,
   };
 
   async function handleSubmit() {
@@ -139,7 +147,9 @@ function GrowthDetailsPage() {
           {tabItems.map((tab, index) => (
             <button
               key={index}
-              onClick={() => navigate(`/${tab.replace(/\s/g, "")}`)}
+              onClick={() =>
+                navigate(`/${tab.replace(/\s/g, "")}/${childdata}`)
+              }
               className={`py-2 mx-2 px-4 border border-gray-300 focus:outline-none ${
                 activeTab === tab ? "bg-blue-500 text-white" : ""
               }`}
@@ -193,9 +203,9 @@ function GrowthDetailsPage() {
           <hr></hr>
           {/* developement milestone */}
           <div className="birth-side-effects">
-            {/* <h1>Developmental Milestone</h1> */}
+            <h1>Developmental Milestone</h1>
             <div>
-              {/* {checkboxOptions.map((option, index) => (
+              {checkboxOptions.map((option, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-between mb-2 mx-[80px]
@@ -211,7 +221,7 @@ function GrowthDetailsPage() {
                     className="mr-2 h-5 w-5"
                   />
                 </div>
-              ))} */}
+              ))}
             </div>
             <button
               className=" block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
@@ -227,4 +237,4 @@ function GrowthDetailsPage() {
   );
 }
 
-export default GrowthDetailsPage;
+export default SIXYEARS;

@@ -1,0 +1,88 @@
+.vaccine{
+    background-color: white;
+  height: 100vh;
+  width: 100%;
+}
+.registration-block{
+    margin-top: 20px;
+background-color: rgba(217, 217, 217, 1);
+display: block;
+height: 170px;
+width: 22%;
+align-items: center;
+border-style: solid;
+border-radius: 10px;
+margin-left: 20px;
+}
+.sex-block{
+    margin-top: 20px;
+background-color: rgba(217, 217, 217, 1);
+display: block;
+height: 170px;
+width: 22%;
+align-items: center;
+border-style: solid;
+border-radius: 10px;
+margin-left: 20px;
+}
+.age-block{
+    margin-top: 20px;
+background-color: rgba(217, 217, 217, 1);
+display: block;
+height: 170px;
+width: 22%;
+align-items: center;
+border-style: solid;
+border-radius: 10px;
+margin-left: 20px;
+}
+.wght-block{
+    margin-top: 20px;
+background-color: rgba(217, 217, 217, 1);
+display: block;
+height: 170px;
+width: 22%;
+align-items: center;
+border-style: solid;
+border-radius: 10px;
+margin-left: 20px;
+}
+.vaccine-block{
+    margin-top: 20px;
+background-color: rgba(217, 217, 217, 1);
+display: block;
+height: 250px;
+width: 71%;
+align-items: center;
+border-style: solid;
+border-radius: 10px;
+margin-left: 20px;
+}
+.immunized-block{
+    margin-top: 20px;
+    background-color: rgba(217, 217, 217, 1);
+    display: block;
+    height: 250px;
+    width: 22%;
+    align-items: center;
+    border-style: solid;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+.top-4{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 30px;
+}
+.bottom-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 30px;
+    margin-top: 30px;
+}

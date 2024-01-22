@@ -87,7 +87,13 @@ function DetailsPage() {
                   <td>
                     <button
                       className="edit-button"
-                      onClick={() => navigate("/gdp")}
+                      onClick={() =>
+                        navigate(
+                          `/${row.GrowthStatus.replace(/\s/g, "")}/${
+                            row.ChildUID
+                          }`
+                        )
+                      }
                     >
                       Edit
                     </button>
@@ -102,7 +108,7 @@ function DetailsPage() {
               ))}
             </tbody>
           </table>
-          <div className="flex justify-between  items-center ">
+          <div className="flex justify-between items-center ">
             <button
               className="block text-3xl bg-red-500 rounded-lg m-10 px-10 py-5 text-center"
               onClick={() => navigate(`/personal`)}

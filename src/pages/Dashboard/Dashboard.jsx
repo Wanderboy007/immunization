@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./dashbord.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetInitialState } from "../../reduxxx/featurs/MotherDataSlice/MotherDataSlice";
+
 import axios from "axios";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchMother, setSearchMother] = useState("");
+  console.log(useSelector((store) => store.PractitionerUID));
   const [displayData, setDisplayData] = useState([
     {
       MotherID: "1",

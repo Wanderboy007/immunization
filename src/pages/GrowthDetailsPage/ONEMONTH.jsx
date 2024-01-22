@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import Sidebar from "../Navbar/Sidebar";
 import "./GrowthDetailsPage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-function GrowthDetailsPage() {
+function OneMonth() {
   const navigate = useNavigate();
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [huac, setHUAC] = useState(0);
-  const [activeTab] = useState("BIRTH");
+  const PUID = useSelector((store) => store.PractitionerUID);
+  const [activeTab] = useState("ONE MONTH");
+  const param = useParams();
+  const { childdata } = param;
 
   const tabItems = [
     "BIRTH",
@@ -54,20 +58,32 @@ function GrowthDetailsPage() {
 
   const [vaccineData, setVaccineData] = useState([
     {
-      vaccine: "OPV-0",
-      date: getTodayDate(),
+      vaccine: "OPV-1",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
     {
-      vaccine: "Hep B",
-      date: getTodayDate(),
+      vaccine: "Penta-1",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
     {
-      vaccine: "BCG",
-      date: getTodayDate(),
+      vaccine: "Rota-1",
+      date: "11-12-2022" || getTodayDate(),
+      checked: false,
+      delayReason: "",
+    },
+    {
+      vaccine: "PCV-1",
+      date: "11-12-2022" || getTodayDate(),
+      checked: false,
+      delayReason: "",
+    },
+    {
+      vaccine: "IPV-1",
+      date: "11-12-2022" || getTodayDate(),
       checked: false,
       delayReason: "",
     },
@@ -87,21 +103,23 @@ function GrowthDetailsPage() {
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   const sendObject = {
+    ChildUID: childdata,
     height,
     huac,
     weight,
-    // Growthstatus,
+    Growthstatus: childdata,
     selectedCheckboxes,
     vaccineData,
+    PractitionerUID: PUID.PractitionerUID,
   };
 
   async function handleSubmit() {
     console.log(sendObject);
     // navigate("/details");
-    // const a = await axios.post(
-    //   `http://localhost:5000/api/vaccinBirth`,
-    //   sendObject
-    // );
+    const a = await axios.post(
+      `http://localhost:5000/vaccin/onemonth`,
+      sendObject
+    );
     // console.log(a);
   }
 
@@ -139,10 +157,13 @@ function GrowthDetailsPage() {
           {tabItems.map((tab, index) => (
             <button
               key={index}
-              onClick={() => navigate(`/${tab.replace(/\s/g, "")}`)}
+              onClick={() =>
+                navigate(`/${tab.replace(/\s/g, "")}/${childdata}`)
+              }
               className={`py-2 mx-2 px-4 border border-gray-300 focus:outline-none ${
                 activeTab === tab ? "bg-blue-500 text-white" : ""
               }`}
+              disabled={index < tab.indexOf(activeTab)} // Disable buttons before the active tab
             >
               {tab}
             </button>
@@ -227,4 +248,4 @@ function GrowthDetailsPage() {
   );
 }
 
-export default GrowthDetailsPage;
+export default OneMonth;

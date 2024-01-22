@@ -1,22 +1,39 @@
-/* SummaryPage.css */
+
 
 .summary-page {
-    max-width: 600px;
-    margin: 0 auto;
+  margin-top: 20px;
+ width: 650px;
+margin-left: 22%;
     padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-style: groove;
+    border-width: 2px;
+box-sizing: border-box;
+background: rgba(255, 241, 241, 0.644);
   }
   
   h1 {
     text-align: center;
     margin-bottom: 20px;
+    font-weight: 600;
   }
-  
+  .block-summary{
+    background-color: rgba(243, 209, 185, 1);
+    border-style: solid;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    }
   h2 {
     font-size: 20px;
     margin-top: 15px;
     margin-bottom: 10px;
+    text-align: center;
+    font-weight: 800;
+    font-family:'Times New Roman', Times, serif;
   }
   
   .info-item {
@@ -24,17 +41,23 @@
   }
   
   .info-item span {
-    font-weight: bold;
+    font-weight: 500;
     margin-right: 10px;
+    width: 100%;
   }
   
   .vaccine-info {
     display: flex;
-    flex-wrap: wrap;
+    margin-top: 10px;
+    width: 100%;
+    flex-direction: row;  
   }
   
-  .vaccine-info div {
-    flex: 1;
+  
+  .vaccine-info span{
+    font-weight: 500;
+    margin-left: 25px;
+    margin-right: 5px;
   }
   
   .immunizations ul {
@@ -43,8 +66,31 @@
   }
   
   .immunizations li {
+    display: block;
+    height: 50px;
+    width: 350px;
+    background-color:rgba(255, 209, 47, 1);
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
     margin-bottom: 5px;
-  }
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 5px; 
+  padding-top: 8px; 
+}
+.immunizations span{
+  height: 60px;
+  background-color: white;
+  padding-left: 10px;
+  width: 100%;
+  padding-right: 10px;
+  padding-top: 6px;
+  margin-top: 5px;
+  padding-bottom: 8px;
+}
   
   .development-milestones .milestone-item {
     display: flex;
@@ -53,15 +99,30 @@
   
   .development-milestones .milestone-item.checked::before {
     content: '\2713'; /* Checkmark symbol */
-    font-size: 24px;
+    font-size: 30px;
     color: green;
+    font-weight: 600;
     margin-right: 10px;
   }
   
   .development-milestones .milestone-item.crossed::before {
     content: '\2717'; /* Cross symbol */
-    font-size: 24px;
+    font-size: 30px;
     color: red;
     margin-right: 10px;
-  }
+    font-weight: 600; 
+   }
+    .next-button{
+      height: 40px;
+      width: 100px;
+      background-color: rgba(38, 156, 42, 1);
+      border-radius: 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: black;
+      margin-bottom: 3%;
+      font-weight: 400;
+      align-items: center;
+
+    }
   

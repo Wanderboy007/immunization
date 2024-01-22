@@ -28,9 +28,9 @@ function MotherDetail() {
         `http://localhost:5000/api/registerMotherdetails`,
         sendData
       );
-      // navigate("/details");
+      // navigate(`/details/${sendData.aadhaarNumber}`);
     } catch (error) {
-      toast.error(error.response.data.message);
+      // toast.error(error.response.data.message);
       // console.log(error.response.data.message);
     }
   }
