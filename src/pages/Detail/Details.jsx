@@ -99,7 +99,7 @@ function DetailsPage() {
                     </button>
                     <button
                       className="summary-button"
-                      onClick={() => navigate("/summary")}
+                      onClick={() => navigate(`/summary/${row.ChildUID}`)}
                     >
                       Summary
                     </button>

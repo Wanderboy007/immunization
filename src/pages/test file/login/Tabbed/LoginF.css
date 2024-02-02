@@ -1,0 +1,98 @@
+.Login_cont{
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    justify-content: center;
+    height: 100vh;
+} 
+
+.Login_box{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap:1rem;
+    padding: 3%;
+    /* background-color: aqua;  */
+    background: rgba(255, 255, 255, 0.597);
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 10px;
+} 
+
+.Login_input_box{
+    background: rgba(241, 233, 137, 0.597);
+    padding: 10%;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1%;
+}
+
+.Login_input_cont{
+    display: flex;
+    flex-direction: column;
+} 
+
+.Login_lable{
+    position: relative;
+    transform: translateX(3px);
+    font-family:'Jua';
+} 
+
+.Login_input{
+    padding: 5px;
+    width: 100%;
+    border-radius: 8px;
+    border-style: solid;
+} 
+
+.Forgot_button{
+    font-family:'Jua';
+    margin-top: 10%;
+    /* margin-right: 3%; */
+}
+
+.Signin_button{
+    font-family:'Jua';
+    /* margin-left: 3%; */
+}
+
+.App{
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+    font-size: 4vw;
+    margin: 0;
+}
+
+html { 
+    background: url(bg.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+  }
+
+
+  .tab-list {
+    font-family:'Jua';
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .tab-list-active {
+    background-color: rgb(115, 190, 255);
+    border: solid #000000;
+    border-width: 2px 2px 1px 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }

@@ -1,40 +1,60 @@
 // SummaryPage.js
 
-import React from "react";
-import "./SummaryPage.css"; // Import your CSS file for styling
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import "./SummaryPage.css";
+import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../Navbar/Sidebar";
+import axios from "axios";
 
 function SummaryPage() {
+  const param = useParams();
+  const { childdata } = param;
+  // console.log(childdata)
   const navigate = useNavigate();
-  // Sample data for child information
-  const childInfo = {
-    name: "Child Name",
-    age: "3 years",
-    dob: "January 1, 2020",
-    motherName: "Mother Name",
-    aadharCard: "XXXX-XXXX-XXXX",
-  };
+  const [childInfo, setChildInfo] = useState({
+    // name: "Child Name",
+    // age: "3 years",
+    // dob: "January 1, 2020",
+    // motherName: "Mother Name",
+    // aadharCard: "XXXX-XXXX-XXXX",
+    // BirthWeight: "1",
+    // CSection: 1,
+    // ClinicalDelivery: 1,
+    // DateOfBirth: "2004-02-16",
+    // HomeDelivery: 1,
+    // Lastname: "palli",
+    // Middlename: "anand",
+    // MotherAdhar: 111,
+    // PerTerm: 0,
+    // PlaceOfBirth: "dscsdcs",
+    // name: "tejas",
+    // ChildUID: "11101",
+    // GrowthStatus: "TWO MONTHS",
+  });
 
-  // Sample data for child vaccination summary
-  const vaccinationInfo = {
-    height: "90cm",
-    weight: "12kg",
-    HUAC: "1234567890",
-    immunizations: [
-      { vaccine: "Vaccine 1", date: "January 15, 2023" },
-      { vaccine: "Vaccine 2", date: "February 20, 2023" },
-      { vaccine: "Vaccine 3", date: "March 5, 2023" },
-      // Add more vaccine summary data as needed
-    ],
-  };
+  const [databirth, setDatabirth] = useState({});
 
-  // Sample data for development milestones
   const milestones = {
     sentence: "Child can say their first words.",
-    checked: true, // Change to false to display a crossed checkbox
+    checked: true,
   };
 
+  useEffect(() => {
+    async function getchilddata() {
+      const getchild = await axios.get(
+        `http://localhost:5000/api/getchildbyuid?childuid=${childdata}`
+      );
+      setChildInfo(getchild.data[0]);
+      const getbirth = await axios.get(
+        `http://localhost:5000/vaccin/birth?childuid=${childdata}`
+      );
+      console.log(getbirth);
+
+      setDatabirth(getbirth.data[0]);
+      // console.log(getchild);
+    }
+    getchilddata();
+  }, []);
   return (
     <div className="flex">
       <Sidebar />
@@ -48,57 +68,57 @@ function SummaryPage() {
             <span>Name:</span> {childInfo.name}
           </div>
           <div className="info-item">
-
-            <span>Age:</span> {childInfo.age}
+            <span>Age:</span> {childInfo.DateOfBirth}
           </div>
           <div className="info-item">
-            <span>Date of Birth:</span> {childInfo.dob}
+            <span>Date of Birth:</span> {childInfo.DateOfBirth}
           </div>
           <div className="info-item">
             <span>Mother Name:</span> {childInfo.motherName}
           </div>
           <div className="info-item">
-            <span>Aadhaar Card:</span> {childInfo.aadharCard}
+            <span>Child UID:</span> {childInfo.ChildUID}
           </div>
         </section>
 
-<div className="block-summary">
-        {/* Vaccination Summary section */}
-        <section className="vaccination-summary">
-          <div className="vaccine-info">
-              <span>Height:</span> {vaccinationInfo.height}
-              <span>Weight:</span> {vaccinationInfo.weight}
-              <span>HAUC:</span> {vaccinationInfo.HUAC}
-          </div>
-          <div className="immunizations">
-            <h2>IMMUNIZATIONS</h2>
-            <ul>
-              {vaccinationInfo.immunizations.map((immunization, index) => (
-               
-                <li key={index}>
-                  <b>{immunization.vaccine} -</b> <span>Given on {immunization.date}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <div className="block-summary">
+          {/* Vaccination Summary section */}
+          <section className="vaccination-summary">
+            <div className="vaccine-info">
+              {/* <span>Height:</span> {databirth.height}
+              <span>Weight:</span> {databirth.weight}
+              <span>HAUC:</span> {databirth.HUAC} */}
+            </div>
+            <div className="immunizations">
+              <h2>IMMUNIZATIONS</h2>
+              <ul>
+                {Object.entries(databirth).map(([key, value], index) => (
+                  <li key={index}>
+                    {key} : {value === "" ? "Vaccin Given" : value}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
 
-        {/* Development Milestones section */}
-        <section className="development-milestones">
-          <h2>DEVELOPMENT MILESTONES</h2>
-          <div
-            className={`milestone-item ${
-              milestones.checked ? "checked" : "crossed"
-            }`}
+          {/* Development Milestones section */}
+          <section className="development-milestones">
+            <h2>DEVELOPMENT MILESTONES</h2>
+            <div
+              className={`milestone-item ${
+                milestones.checked ? "checked" : "crossed"
+              }`}
+            >
+              {milestones.sentence}
+            </div>
+          </section>
+          <button
+            className="next-button"
+            onClick={() => navigate("/dashboard")}
           >
-            {milestones.sentence}
-          </div>
-        </section>
-        <button
-          className="next-button"
-          onClick={() => navigate("/details")} >
-         NEXT
-        </button></div>
+            NEXT
+          </button>
+        </div>
       </div>
     </div>
   );

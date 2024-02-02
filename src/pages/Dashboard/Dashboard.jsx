@@ -13,18 +13,18 @@ const Dashboard = () => {
   const [searchMother, setSearchMother] = useState("");
   console.log(useSelector((store) => store.PractitionerUID));
   const [displayData, setDisplayData] = useState([
-    {
-      MotherID: "1",
-      MotherName: "asghuj s prabhashanker",
-      Adhar: "123456789987456",
-      NumberOfChild: 5,
-    },
-    {
-      MotherID: "2s",
-      MotherName: "asghuj s prabhashanker",
-      Adhar: "123456789987456",
-      NumberOfChild: 5,
-    },
+    // {
+    //   MotherID: "1",
+    //   MotherName: "asghuj s prabhashanker",
+    //   Adhar: "123456789987456",
+    //   NumberOfChild: 5,
+    // },
+    // {
+    //   MotherID: "2s",
+    //   MotherName: "asghuj s prabhashanker",
+    //   Adhar: "123456789987456",
+    //   NumberOfChild: 5,
+    // },
   ]);
 
   async function getmotherdata(e) {
@@ -32,7 +32,7 @@ const Dashboard = () => {
     const mothersDetails = await axios.get(
       `http://localhost:5000/api/motherdetails?MotherAdhar=${searchMother}`
     );
-
+    console.log(mothersDetails);
     setDisplayData(mothersDetails.data);
   }
   async function handleAddClick(e) {

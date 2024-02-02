@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 
-import Login from './pages/Login/Login';
+import Login from '../src/pages/test file/login/Tabbed/Loggin.jsx';
 import Register from './pages/Login/register/Register';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Analytic from "./pages/Analytics/Analytic";
@@ -44,7 +44,7 @@ function App() {
       <Route path="VITAMINA/:childdata" element={<VITAMINA />} />
       <Route path="SIXYEARS/:childdata" element={<SIXYEARS />} />
       <Route path="Motherdetail/:id?" element={<MotherDetail />} />
-      <Route path="summary:childdata" element={<SummaryPage />} />
+      <Route path="summary/:childdata" element={<SummaryPage />} />
       <Route path="gdp" element={<GrowthDetailsPage />} />
       <Route path="personal" element={<PersonalDetail />} />
       <Route path="test" element={<Herotest />} />

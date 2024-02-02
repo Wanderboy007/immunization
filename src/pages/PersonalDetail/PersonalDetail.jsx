@@ -3,10 +3,12 @@ import Sidebar from "../Navbar/Sidebar";
 import { useFormik } from "formik";
 import "./PersonalDetail.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const PersonalDetail = () => {
   const navigate = useNavigate();
+  const MotherID = useSelector((store) => store.MotherData.motherAdhar);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -28,7 +30,7 @@ const PersonalDetail = () => {
           "http://localhost:5000/api/addchild",
           formik.values
         );
-
+        navigate(`/details/${MotherID}`);
         console.log(a);
       }
       sendData();
