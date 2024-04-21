@@ -29,7 +29,7 @@ const Analytic = () => {
      <h6>Vaccine</h6>
      </div>
      <div className="immunized-block">
-     <h6>Immunization</h6>
+     <h6>Immunizations</h6>
      </div>
      </div>
 
